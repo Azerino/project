@@ -1,6 +1,7 @@
-#from test import tools
 import numpy as np
-import math
-import cmath
+import matplotlib.pyplot as plt
 
-print(np.zeros(shape=(2,3)))
+x = np.arange(0, 5, 0.1)
+y = np.sin(x)
+plt.plot(x, y)
+plt.show()

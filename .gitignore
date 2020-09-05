@@ -1,5 +1,5 @@
 /.venv/
-/.vscode/
 **/__pycache__/
 test/__pycache__/tools.cpython-38.pyc
 .gitignore
+test.py
