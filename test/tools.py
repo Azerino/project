@@ -20,5 +20,24 @@ def precom(n): #precomputes the possible values for phi
         precomvalues[i] = phi(i/n,n)
     return precomvalues
 
+def mat(n):  #creates the matrix Omega_n
+    prevalues = precom(n)
+    matrix = np.zeros(shape=(n-1,n))
+    for i in range(1,n):
+        for j in range(0,n):
+            matrix[i-1,j]= prevalues[(i*j)%n].real
+    return matrix
 
-    
+def eta(vector,s,i,n,nmax,precomvalues="null"): #book p. 80 eta_d-1(n)
+    if s == 0:
+        return 1
+
+    if precomvalues == "null":
+        result = 1
+        for j in range(1,s+1):
+            result = result * phi(vector[j]*i/n)
+        return result
+
+    for j in range(1,s+1):
+        result = result * precomvalues[(i*vector[j])%n]
+    return result
