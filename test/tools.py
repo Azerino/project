@@ -8,7 +8,7 @@ def c(n):
 def r1(h):
     return max(1,abs(h))
 
-def phi(x,n):   #book version: p. 78
+def phi(x,n):   #book version: p. 78  , O(n)
     result = 0
     for h in c(n):
         result = result + ((1/r1(h))*np.exp(2*math.pi*complex(0,1)*h*x))
@@ -18,7 +18,7 @@ def precom(n): #precomputes the possible values for phi
     precomvalues = [0]*n
     for i in range(0,n):
         precomvalues[i] = phi(i/n,n)
-    return precomvalues
+    return np.array(precomvalues)
 
 def mat(n):  #creates the matrix Omega_n
     prevalues = precom(n)
