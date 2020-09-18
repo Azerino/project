@@ -41,3 +41,11 @@ def eta(vector,s,i,n,nmax,precomvalues="null"): #book p. 80 eta_d-1(n)
     for j in range(1,s+1):
         result = result * precomvalues[(i*vector[j])%n]
     return result
+
+def fourier_mat(m):
+    fmat = np.zeros(shape=(m,m))
+    omega = np.exp(2*math.pi*complex(0,1)/m)
+    for k in range(0,m-1):
+        for l in range(0,m-1):
+            fmat[k,l]= np.power(np.power(omega, k*l),m-1)/np.sqrt(m)
+    return fmat
