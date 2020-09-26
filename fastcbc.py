@@ -17,7 +17,7 @@ def cbc(n,s):   #algorithm 4.8 without FFT
     return genereating_vector    
 
 def fastcbc(n,s):   #algorithm 4.8 with FFT
-    genereating_vector = [1]*s
+    generating_vector = [1]*s
     omega_n = tools.omega_matrix(n)
     phi_n = tools.precom(n)  #1 TODO: implement FFT to speed up computation
     q = gp.generatorp(n)
@@ -32,9 +32,8 @@ def fastcbc(n,s):   #algorithm 4.8 with FFT
         third = np.multiply(diagvec,second)
         fourth = np.fft.ifft(third)
         T_n = np.multiply(np.transpose(permmat),fourth)      #i) TODO: Fix Errors
-        genereating_vector[d-1] = np.argmin(T_n) #ii)
+        generating_vector[d-1] = np.argmin(T_n) #ii)
         for i in range(0,n-1):                   #iii)
-            eta_vector[i] = eta_vector[i] * phi_n[(i*genereating_vector[d-1])%n] 
-    return genereating_vector    
+            eta_vector[i] = eta_vector[i] * phi_n[(i*generating_vector[d-1])%n] 
+    return generating_vector    
 
-print(fastcbc(1009,10))
