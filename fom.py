@@ -53,4 +53,4 @@ def fom_precom_time(g,n): #gives the process time for the optimized fom method
     print(fom,"   time: ", format(cputime))
 
 #print(fom_precom([1, 282, 197, 377, 233, 55, 73, 263, 408, 46] , 1009))
-fom_precom_time([1, 282, 197, 377, 233, 55, 73, 263, 408, 46] , 1009)
+fom_precom_time([137, 597, 459, 459, 459, 505, 503, 503, 503, 0] , 1009)

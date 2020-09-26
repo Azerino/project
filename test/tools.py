@@ -50,40 +50,29 @@ def eta(vector,s,i,n,nmax,precomvalues="null"): #book p. 80 eta_d-1(n)
         result = result * precomvalues[(i*vector[j])%n]
     return result
 
-def primfaktoren(n):
-    """
-    die Primfaktoren von n werden als Liste zurÃ¼ckgegeben
-    """
-    f = []
-    while n%2 == 0:
-        f = f + [2]
-        n = n//2
-    while n%3 == 0:
-        f = f + [3]
-        n = n//3
-    t = 5
-    diff = 2
-    w = round(math.sqrt(n))
-    while t <= w:
-        while n%t == 0:
-            f = f + [t]
-            n = n//t
-        t = t + diff
-        diff = 6 - diff
-    if n > 1:
-        f = f + [n]
-    return f
-"""
-Die Methode zur Primitivwurzel übernommen von: https://stackoverflow.com/questions/40190849/efficient-finding-primitive-roots-modulo-n-using-python
-"""
-def primRoots(modulo):
-    coprime_set = {num for num in range(1, modulo) if math.gcd(num, modulo) == 1}
-    return [g for g in range(1, modulo) if coprime_set == {pow(g, powers, modulo) for powers in range(1, modulo)}]
+def getpermmatrix(q,n):
+    matrix = np.zeros(shape=(n-1,n-1))
+    for k in range(1,n):
+        for l in range(1,n):
+            if k == np.power(q,l)%n:
+                matrix[k,l]= 1
+                break
+    return matrix
 
-def fourier_mat(m):
-    fmat = np.zeros(shape=(m,m))
-    omega = np.exp(2*math.pi*complex(0,1)/m)
-    for k in range(0,m-1):
-        for l in range(0,m-1):
-            fmat[k,l]= np.power(np.power(omega, k*l),m-1)/np.sqrt(m)
-    return fmat
+def getdiagmatrixasvector(q,n,precomvalues):
+    c = [1]*n
+    d = [0]*n
+    omega = np.exp(2*math.pi*complex[0,1]/n)
+    for r in range(0,n):
+        c[r]= precomvalues[np.power(q,r)%n]
+    for i in range(0,n):
+        for j in range(0,n):
+            d[i] = d[i] + c[j]*np.power(omega,j)
+    return d
+
+    
+
+#def getphi_n(n):
+#    x = []
+
+

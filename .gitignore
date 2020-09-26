@@ -3,3 +3,6 @@
 test/__pycache__/tools.cpython-38.pyc
 .gitignore
 test.py
+.vscode/settings.json
+.gitignore
+test/__pycache__/tools.cpython-38.pyc

@@ -1,10 +1,8 @@
 import numpy as np
 import math
 from test import tools
+from test import generatorp as gp
 import matplotlib.pyplot as plt
-
-eta_vector = [1]*(7-1)
-prevalues = tools.precom(5)
-print(prevalues[4])
-print(prevalues[4*1%5])
-print(tools.omega_matrix(5))
+c = [[1,2,3],[4,5,6],[7,8,9]]
+print(c)
+print(np.transpose(c))

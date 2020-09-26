@@ -26,3 +26,7 @@ def generatorp(p):
             i = 0
         i = i + 1
     return g
+
+def pinverse(x,p):
+    return np.power(x,p-2)%p
+
