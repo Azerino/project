@@ -37,4 +37,4 @@ def fastcbc(n,s):   #algorithm 4.8 with FFT
             eta_vector[i] = eta_vector[i] * phi_n[(i*genereating_vector[d-1])%n] 
     return genereating_vector    
 
-fastcbc(1009,10)
+print(fastcbc(1009,10))

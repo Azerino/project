@@ -52,17 +52,18 @@ def eta(vector,s,i,n,nmax,precomvalues="null"): #book p. 80 eta_d-1(n)
 
 def getpermmatrix(q,n):
     matrix = np.zeros(shape=(n-1,n-1))
-    for k in range(1,n):
-        for l in range(1,n):
+    for k in range(0,n):
+        for l in range(0,n):
             if k == np.power(q,l)%n:
-                matrix[k,l]= 1
+                matrix[k-1,l-1]= 1
                 break
     return matrix
 
 def getdiagmatrixasvector(q,n,precomvalues):
+    n = n-1
     c = [1]*n
     d = [0]*n
-    omega = np.exp(2*math.pi*complex[0,1]/n)
+    omega = np.exp(2*math.pi*complex(0,1)/n)
     for r in range(0,n):
         c[r]= precomvalues[np.power(q,r)%n]
     for i in range(0,n):
