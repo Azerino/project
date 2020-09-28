@@ -78,7 +78,7 @@ def getphi_n(n):
     for i in range(0,int((n-1)/2+1)):
         x[i] = 1.0/r1(i)
     for j in range(1,int((n-1)/2+1)):
-        x[j+int((n-1)/2)] = r1((n-1)/2+1-j)
+        x[j+int((n-1)/2)] = 1.0/r1((n-1)/2+1-j)
     
     return np.fft.fft(x)
 
