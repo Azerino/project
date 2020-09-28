@@ -4,4 +4,5 @@ from test import tools
 from test import generatorp as gp
 import matplotlib.pyplot as plt
 
-print(tools.getpermmatrix(5,7))
+print(tools.getphi_n(7))
+print(tools.precom(7))
