@@ -41,7 +41,7 @@ def fom_precom(g,n): #optimized fom method which only uses the precomuted values
             helper = helper * precomvalues[(i*x)%n]
         result = result + helper
     merit =  result/n-1
-    if merit.imag < 1e-15:
+    if merit.imag < 1e-14:
         return merit.real
     return "Error, figure of merit has a complex part"
 
@@ -53,4 +53,4 @@ def fom_precom_time(g,n): #gives the process time for the optimized fom method
     print(fom,"   time: ", format(cputime))
 
 #print(fom_precom([1, 282, 197, 377, 233, 55, 73, 263, 408, 46] , 1009))
-fom_precom_time([137, 597, 459, 459, 459, 505, 503, 503, 503, 0] , 1009)
+fom_precom_time([16, 973, 366, 3, 348, 575, 680, 680, 926, 1] , 1009)
