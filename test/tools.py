@@ -36,7 +36,7 @@ def omega_matrix(n):  #creates the matrix Omega_n according to the book
             matrix[i-1,j-1]= prevalues[(i*j)%n].real
     return matrix
 
-def eta(vector,s,i,n,nmax,precomvalues="null"): #book p. 80 eta_d-1(n)
+def eta(vector,s,i,n,precomvalues="null"): #book p. 80 eta_d-1(n)
     if s == 0:
         return 1
 
@@ -45,7 +45,7 @@ def eta(vector,s,i,n,nmax,precomvalues="null"): #book p. 80 eta_d-1(n)
         for j in range(1,s+1):
             result = result * phi(vector[j]*i/n)
         return result
-
+    result = 1
     for j in range(1,s+1):
         result = result * precomvalues[(i*vector[j])%n]
     return result
@@ -82,5 +82,17 @@ def getphi_n(n):
     
     return np.fft.fft(x)
 
-
+def testcbc(n,s):   #algorithm 4.8 without FFT
+    genereating_vector = [1]*s
+    omega_n = omega_matrix(n)
+    phi_n = precom(n)  #1 
+    eta_vector = [1]*(n-1)   #2
+    #3:
+    for d in range(1,s):
+        T_n = np.matmul(omega_n,eta_vector)      #i) 
+        #print(T_n)
+        genereating_vector[d-1] = np.argmin(T_n)+1 #ii)
+        for i in range(0,n-1):                   #iii)
+            eta_vector[i] = eta(genereating_vector,d-1,i,n,phi_n) * phi_n[(i*genereating_vector[d-1])%n] 
+    return genereating_vector    
 

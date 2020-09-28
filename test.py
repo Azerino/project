@@ -3,6 +3,8 @@ import math
 from test import tools
 from test import generatorp as gp
 import matplotlib.pyplot as plt
+import fastcbc
 
-print(tools.getphi_n(7))
-print(tools.precom(7))
+
+#print(tools.testcbc(7,10))
+print(fastcbc.fastcbc(1009,10))
