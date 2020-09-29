@@ -20,7 +20,7 @@ def cbc(n,s):   #algorithm 4.8 without FFT
 
 def fastcbc(n,s):   #algorithm 4.8 with FFT
     generating_vector = [1]*s
-    omega_n = tools.omega_matrix(n)
+    omega_n = tools.omega_matrix_c(n)
     phi_n = tools.getphi_n(n)  #1 
     q = gp.generatorp(n)
     diagvec = tools.getdiagmatrixasvector(q,n,phi_n)

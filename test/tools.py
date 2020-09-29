@@ -20,7 +20,7 @@ def precom(n): #precomputes the possible values for phi
         precomvalues[i] = phi(i/n,n)
     return np.array(precomvalues)
 
-def mat(n):  #creates the matrix Omega_n according to the paper
+def mat(n):  #creates the matrix Omega_n according to the paper UNUSED
     prevalues = precom(n)
     matrix = np.zeros(shape=(n-1,n))
     for i in range(1,n):
@@ -28,7 +28,7 @@ def mat(n):  #creates the matrix Omega_n according to the paper
             matrix[i-1,j]= prevalues[(i*j)%n].real
     return matrix
 
-def omega_matrix(n):  #creates the matrix Omega_n according to the book
+def omega_matrix(n):  #creates the matrix Omega_n according to the book UNUSED SINCE IT DISCARDS IMAGINARY PART!!!
     prevalues = precom(n)
     matrix = np.zeros(shape=(n-1,n-1))
     for i in range(1,n):
@@ -36,7 +36,15 @@ def omega_matrix(n):  #creates the matrix Omega_n according to the book
             matrix[i-1,j-1]= prevalues[(i*j)%n].real
     return matrix
 
-def eta(vector,s,i,n,precomvalues="null"): #book p. 80 eta_d-1(n)
+def omega_matrix_c(n):  #creates the matrix Omega_n according to the book which doesn't discard imaginary part
+    prevalues = precom(n)
+    matrix = np.zeros(shape=(n-1,n-1),dtype=complex)
+    for i in range(1,n):
+        for j in range(1,n):
+            matrix[i-1,j-1]= prevalues[(i*j)%n]
+    return matrix
+
+def eta(vector,s,i,n,precomvalues="null"): #book p. 80 eta_d-1(n) UNUSED!!!
     if s == 0:
         return 1
 
@@ -73,26 +81,12 @@ def getdiagmatrixasvector(q,n,precomvalues):
 
     
 
-def getphi_n(n):
+def getphi_n(n): 
     x = [0]*n
     for i in range(0,int((n-1)/2+1)):
         x[i] = 1.0/r1(i)
     for j in range(1,int((n-1)/2+1)):
         x[j+int((n-1)/2)] = 1.0/r1((n-1)/2+1-j)
     
-    return np.fft.fft(x)
-
-def testcbc(n,s):   #algorithm 4.8 without FFT
-    genereating_vector = [1]*s
-    omega_n = omega_matrix(n)
-    phi_n = precom(n)  #1 
-    eta_vector = [1]*(n-1)   #2
-    #3:
-    for d in range(1,s):
-        T_n = np.matmul(omega_n,eta_vector)      #i) 
-        #print(T_n)
-        genereating_vector[d-1] = np.argmin(T_n)+1 #ii)
-        for i in range(0,n-1):                   #iii)
-            eta_vector[i] = eta(genereating_vector,d-1,i,n,phi_n) * phi_n[(i*genereating_vector[d-1])%n] 
-    return genereating_vector    
+    return np.fft.fft(x) 
 
