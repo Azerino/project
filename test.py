@@ -7,14 +7,5 @@ import fastcbc
 
 
 
-n=7
-perm = np.zeros(n-1, dtype=int)
-perm[0] = 1
-for i in np.arange(1, n-1):
-    perm[i] = (perm[i-1]*3) % n
-print(perm)
 
-perminv = np.zeros(n-1, dtype=int)
-for i in np.arange(1, n):
-    perminv[perm[i-1]-1]= i
-print(perminv)
+print(tools.fom_precom([1, 282, 197, 377, 233, 55, 73, 263, 408, 46],1009))
